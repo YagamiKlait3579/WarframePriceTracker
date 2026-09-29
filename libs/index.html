@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Warframe Price Tracker</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="app">
+  <div class="sticky-top">
+    <header class="topbar">
+      <div>
+        <h1 id="appTitle">Warframe Price Tracker</h1>
+        <div id="statusText" class="status"></div>
+      </div>
+      <div class="top-actions">
+        <button id="refreshBtn" class="primary"></button>
+        <button id="refreshAllBtn"></button>
+        <button id="settingsBtn"></button>
+      </div>
+    </header>
+
+    <section class="toolbar">
+      <input id="filterInput" type="search">
+      <label class="toggle"><input id="crossplayToggle" type="checkbox"> <span id="crossplayLabel"></span></label>
+      <label class="player-filter"><span id="playerFilterLabel"></span><select id="playerStatusSelect"></select></label>
+    </section>
+  </div>
+
+  <main>
+    <div id="categories" class="categories"></div>
+    <div id="emptyState" class="empty hidden">
+      <h2 id="emptyTitle"></h2>
+      <p id="emptyText"></p>
+      <button id="emptySettingsBtn" class="primary"></button>
+    </div>
+  </main>
+</div>
+
+<footer class="site-footer">
+  <a href="https://discord.gg/yrRfUMXAnk" target="_blank" rel="noopener" id="discordLink">Discord</a>
+  <span>•</span>
+  <a href="https://github.com/YagamiKlait3579" target="_blank" rel="noopener" id="githubLink">GitHub</a>
+</footer>
+
+<dialog id="settingsDialog">
+  <div class="dialog-head">
+    <h2 id="settingsTitle"></h2>
+    <button class="icon-btn" data-close="settingsDialog">×</button>
+  </div>
+
+  <div class="settings-tabs">
+    <button class="tab active" data-tab="categoriesTab" id="categoriesTabBtn"></button>
+    <button class="tab" data-tab="itemsTab" id="itemsTabBtn"></button>
+  </div>
+
+  <section id="categoriesTab" class="tab-content active">
+    <div class="settings-general">
+      <label><span id="languageLabel"></span><select id="languageSelect"><option value="ru">Русский</option><option value="en">English</option></select></label>
+    </div>
+    <div class="inline-form category-add-form">
+      <input id="categoryNameInput" type="text">
+      <select id="categoryParentSelect"></select>
+      <button id="addCategoryBtn" class="primary"></button>
+    </div>
+    <div id="categoryParentHint" class="form-hint"></div>
+    <div id="categoryEditor" class="editor-list"></div>
+  </section>
+
+  <section id="itemsTab" class="tab-content">
+    <div class="item-select-row">
+      <select id="categorySelect"></select>
+      <button id="addItemBtn" class="primary"></button>
+    </div>
+    <div id="itemsHint" class="form-hint"></div>
+    <div id="itemEditor" class="editor-list"></div>
+  </section>
+
+  <div class="dialog-foot settings-foot">
+    <div class="data-actions">
+      <button id="exportBtn"></button>
+      <button id="importBtn"></button>
+      <input id="importFileInput" type="file" accept="application/json,.json" hidden>
+    </div>
+    <button id="resetPricesBtn" class="danger"></button>
+    <button id="resetBtn" class="danger"></button>
+    <button data-close="settingsDialog" id="settingsCloseBtn"></button>
+  </div>
+</dialog>
+
+<dialog id="moveCategoryDialog">
+  <div class="dialog-head">
+    <h2 id="moveCategoryTitle"></h2>
+    <button class="icon-btn" data-close="moveCategoryDialog">×</button>
+  </div>
+  <div class="form-stack">
+    <label><span id="moveCategoryParentLabel"></span><select id="moveCategoryParentSelect" class="full-input"></select></label>
+    <label><span id="moveCategoryPositionLabel"></span><select id="moveCategoryPositionSelect" class="full-input"></select></label>
+    <div id="moveCategoryHint" class="form-hint"></div>
+    <div id="moveCategoryError" class="form-error"></div>
+  </div>
+  <div class="dialog-foot">
+    <button id="moveCategorySaveBtn" class="primary"></button>
+    <button data-close="moveCategoryDialog" id="moveCategoryCancelBtn"></button>
+  </div>
+</dialog>
+
+<dialog id="itemDialog">
+  <div class="dialog-head">
+    <h2 id="itemDialogTitle"></h2>
+    <button class="icon-btn" data-close="itemDialog">×</button>
+  </div>
+
+  <div class="form-stack">
+    <label>
+      <span id="marketLinkLabel"></span>
+      <input id="itemUrlInput" class="full-input">
+    </label>
+    <label>
+      <span id="nameLabel"></span>
+      <input id="itemNameInput" class="full-input">
+    </label>
+    <label>
+      <span id="categoriesLabel"></span>
+      <div id="itemCategoryList" class="category-checklist"></div>
+    </label>
+    <div id="urlError" class="form-error"></div>
+  </div>
+
+  <div class="dialog-foot">
+    <button id="saveItemBtn" class="primary"></button>
+    <button data-close="itemDialog" id="itemCancelBtn"></button>
+  </div>
+</dialog>
+
+<script type="module" src="js/main.js"></script>
+</body>
+</html>
