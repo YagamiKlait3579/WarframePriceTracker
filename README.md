@@ -1,6 +1,6 @@
 # Warframe Price Tracker
 
-[🇷🇺 Русский](#русский) | [🇬🇧 English](#english)
+[Русский](#русский) | [English](#english)
 
 ---
 
